@@ -37,18 +37,13 @@ func Post(w http.ResponseWriter, r *http.Request) {
 			}
 			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
 		} else {
-			randm := []string{
-				"hai hai hai kaka lagi ngapain",
-				"tebak tebak lokasi yo",
-				"bentar dulu sabar napa",
-				"coba kirim lokasi kamu deh",
-				"maap isnaentinya ngga ada",
-			}
+			// Jika kondisi else tidak memenuhi permintaan yang diharapkan, kirim pesan default atau kosong
 			dt := &wa.TextMessage{
 				To:       msg.Phone_number,
 				IsGroup:  false,
-				Messages: GetRandomString(randm),
+				Messages: "",
 			}
+
 			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
 		}
 	} else {
