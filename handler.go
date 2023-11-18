@@ -39,9 +39,8 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		} else {
 			// Jika kondisi else tidak memenuhi permintaan yang diharapkan, kirim pesan default atau kosong
 			dt := &wa.TextMessage{
-				To:       msg.Phone_number,
-				IsGroup:  false,
-				Messages: "",
+				To:      msg.Phone_number,
+				IsGroup: false,
 			}
 
 			resp, _ = atapi.PostStructWithToken[atmessage.Response]("Token", os.Getenv("TOKEN"), dt, "https://api.wa.my.id/api/send/message/text")
